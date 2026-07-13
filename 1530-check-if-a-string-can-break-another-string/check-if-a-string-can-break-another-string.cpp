@@ -12,6 +12,8 @@ public:
             if(s1[i]>s2[i]){
                 ch2=false;
             }
+            if(!ch1 && !ch2)
+                break;
         }
         return ch1||ch2;
         
