@@ -2,33 +2,35 @@ class Solution {
 public:
     vector<int> filterRestaurants(vector<vector<int>>& restaurants, int veg, int maxPrice, int maxDistance) {
 
-        unordered_map<int, vector<int>> mpp;
 
-        for(auto row: restaurants){
-            if(veg==1 && row[2]==0)
-                continue;
-            if(row[3]>maxPrice)
-                continue;
-            if(row[4]>maxDistance)
+        vector<vector<int>> temp;
+
+        for (auto &row : restaurants) {
+
+            if (veg == 1 && row[2] == 0)
                 continue;
 
-                mpp[row[1]].push_back(row[0]);
+            if (row[3] > maxPrice)
+                continue;
+
+            if (row[4] > maxDistance)
+                continue;
+
+            temp.push_back(row);
         }
-        vector<int> rat;
-        for(auto &it: mpp){
-            rat.push_back(it.first);
-        }
 
-        sort(rat.begin(), rat.end(), greater<int>());
+        sort(temp.begin(), temp.end(), [](vector<int> &a, vector<int> &b) {
+
+            if (a[1] != b[1])
+                return a[1] > b[1];
+
+            return a[0] > b[0];
+        });
+
         vector<int> ans;
 
-        for(int i=0; i<rat.size(); i++){
-            sort(mpp[rat[i]].begin(), mpp[rat[i]].end(), greater<int>());
-
-            for(int num: mpp[rat[i]]){
-                ans.push_back(num);
-            }
-        }
+        for (auto &row : temp)
+            ans.push_back(row[0]);
 
         return ans;
         
