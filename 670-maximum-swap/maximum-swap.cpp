@@ -1,42 +1,27 @@
 class Solution {
 public:
-    int great(string& s, int i){
-        char g=s[i];
-        int index=i;
-
-        for(int j=i+1; j<s.size(); j++){
-            if(s[j]>=g){
-                g=s[j];
-                index=j;
-            }
-        }
-     return index;
-
-    }
-
     int maximumSwap(int num) {
+
+        unordered_map<char, int> mpp;
 
         string s=to_string(num);
 
-        int i=0;
-        int n=s.size();
-
-        while(i<n){
-            if(s[i]!='9')
-                break;
-            else
-                i++;
+        for(int i=0; i<s.size(); i++){
+            mpp[s[i]]=i;
         }
 
-        for(int j=i; j<n-1; j++){
-            int gg=great(s,j+1);
-            if(s[gg]>s[j]){
-                swap(s[gg], s[j]);
+        string ss=s;
+
+        sort(ss.begin(), ss.end(), greater<char>());
+
+        for(int j=0; j<s.size()-1; j++){
+            if(s[j]!=ss[j]){
+                swap(s[j],s[mpp[ss[j]]]);
                 break;
             }
         }
 
         return stoi(s);
-
+        
     }
 };
