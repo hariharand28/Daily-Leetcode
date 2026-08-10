@@ -4,16 +4,16 @@ public:
         if(s.size()<k)
             return false;
 
-        unordered_map<char,int> mpp;
+        vector<int> fr(26,0);
 
         for(char c: s){
-            mpp[c]++;
+            fr[c-'a']++;
         }
 
         int odd=0;
 
-        for(auto& [one, two]: mpp){
-            if(two%2==1)
+        for(int i: fr){
+            if(i>0 && i%2==1)
                 odd++;
         }
 
