@@ -6,6 +6,7 @@ public:
         if(par==4 && in==s.size()){
             ss.pop_back();
             ans.push_back(ss);
+            return;
         }
 
         for(int i=1; i<=3 && i+in<=s.size(); i++){
