@@ -15,7 +15,6 @@ public:
             long long pairs = cnt * (cnt - 1) / 2;
             pairs %= MOD;
 
-            // pairs from current y × pairs from previous y's
             ans = (ans + pairs * sum) % MOD;
 
             sum = (sum + pairs) % MOD;
