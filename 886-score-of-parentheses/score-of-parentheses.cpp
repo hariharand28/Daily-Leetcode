@@ -6,7 +6,7 @@ public:
 
         for (char c : s) {
             if (c == '(') {
-                st.push(0);
+                st.push(0);  
             } 
             else {
                 int inner = st.top();
