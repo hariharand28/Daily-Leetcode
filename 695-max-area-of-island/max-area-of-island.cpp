@@ -1,10 +1,7 @@
 class Solution {
 public:
     int sol(vector<vector<int>>& grid, int i, int j){
-        if(i<0 || i>=grid.size() || j<0 || j>=grid[0].size())
-            return 0;
-
-        else if(grid[i][j]==0)
+        if(i<0 || i>=grid.size() || j<0 || j>=grid[0].size() || grid[i][j]==0)
             return 0;
 
         grid[i][j]=0;
