@@ -5,15 +5,30 @@ public:
         int n=grid.size();
 
         for(int i=1; i<n; i++){
-            for(int j=0; j<n; j++){
-                int temp=INT_MAX;
+            int min1=INT_MAX;
+            int min2=INT_MAX;
+            int in=-1;
 
-                for(int h=0; h<n; h++){
-                    if(h!=j)
-                        temp=min(temp, grid[i][j]+grid[i-1][h]);
+            for(int j=0; j<n; j++){
+
+                if(grid[i-1][j]<min1){
+                    min2=min1;
+                    min1=grid[i-1][j];
+                    in=j;
                 }
-                grid[i][j]=temp;
+                else if(grid[i-1][j]<min2){
+                    min2=grid[i-1][j];
+                }
+
             }
+
+            for(int j=0; j<n; j++){
+                if(j==in)
+                    grid[i][j]+=min2;
+                else
+                    grid[i][j]+=min1;
+            }
+
         }
 
         int ans=INT_MAX;
